@@ -108,14 +108,26 @@ export class StockholmEBikes {
   }
 
   async trips() {
+    if (this.session === undefined) {
+      throw new Error("Cannot use this method unless authenticated");  
+    }
+
     return await (await this.#fetch("/app/my-trips?_data=routes/app/my-trips")).json();
   }
 
   async wallet() {
+    if (this.session === undefined) {
+      throw new Error("Cannot use this method unless authenticated");  
+    }
+
     return await (await this.#fetch("/app/wallet?_data=routes/app/wallet")).json();
   }
 
   async account() {
+    if (this.session === undefined) {
+      throw new Error("Cannot use this method unless authenticated");  
+    }
+
     return await (await this.#fetch("/app/profile?_data=routes/app/profile")).json();
   }
 
